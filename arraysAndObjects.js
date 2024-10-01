@@ -45,4 +45,12 @@ the below code would not work because the reference to the array cannot be alter
 groceries = ["coconut milk", "curry paste", "peas"]; 
 */
 
+//nested arrays
+const fruits = [
+    ["kiwi", "lime"],
+    ["strawberry", "cherry"],
+    ["mandarin","tangerine"]
+];
 
+fruits[2][0] //mandarin
+fruits[2][1] = "kumquat" //replaces tangerine with kumquat
