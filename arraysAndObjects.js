@@ -34,3 +34,15 @@ let quadruped = animals.slice(-3);
 
 animals.slice(); //just makes a copy of the array
 
+//const with arrays
+const groceries = ["coconut milk", "curry paste", "peas", "potatoes"];
+
+groceries.pop(); //allowed because you're not altering the reference to the array
+
+/* 
+the below code would not work because the reference to the array cannot be altered
+
+groceries = ["coconut milk", "curry paste", "peas"]; 
+*/
+
+
