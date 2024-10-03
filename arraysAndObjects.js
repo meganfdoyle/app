@@ -54,3 +54,45 @@ const fruits = [
 
 fruits[2][0] //mandarin
 fruits[2][1] = "kumquat" //replaces tangerine with kumquat
+
+//objects
+const obj = {
+    "76 trombones": "great song!"
+};
+obj["76 trombones"] //bracket notation is required because the key is not syntactically valid and dot notation wouldn't work
+
+const palette = {
+    red: "#eb4d4b",
+    yellow: "#f9ca24",
+    blue: "#30336b"
+};
+
+palette.yellow; //works because "yellow" is syntactically sound
+/* 
+the below code would not work because yellow is not a defined variable, it is a property
+
+palette[yellow]; 
+*/
+
+let mysteryColor = "yellow";
+
+palette[mysteryColor]; //works because mysteryColor evaluates to "yellow"
+
+/*
+the below code would not work because JS would look for a property named "mysteryColor" which does not exist
+
+palette.mysteryColor;
+*/
+
+//array equality
+
+let nums = [1,2,3];
+let mystery = [1,2,3];
+
+nums === mystery; //false because they are separate arrays with different references/sddresses in memory
+
+let moreNums = nums;
+
+nums === moreNums; //true because both arrays reference the same place in memory
+
+//this is also true for objects because === when applied to reference type variables checks for equality of reference, not equality of contents
