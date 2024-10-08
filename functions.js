@@ -302,3 +302,5 @@ giveMeFour(...colors); //the ellipsis breaks up the iterable into indvidual argu
 //strings are iterables, so this works on strings as well 
 const iterable = 'goat';
 giveMeFour(...iterable);
+
+

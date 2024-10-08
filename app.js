@@ -31,7 +31,7 @@ let expression2 = (x == 7 || x === 3) && x > 10; //evaluates to false
 
 if (expression1) {
     console.log("Expression1 is true!");
-}
+};
 
 if (!expression2) {
     console.log("Expression2 is false!");
@@ -102,7 +102,7 @@ for (let i = 1; i <= 10; i++) { //runs 10 times
 //iterate over an array
 const animals = ["lions", "tigers", "bears"];
 
-for (let i=0; i < animals.length; i++) { //logs each index of animals
+for (let i = 0; i < animals.length; i++) { //logs each index of animals
     console.log(i, animals[i]);
 };
 
