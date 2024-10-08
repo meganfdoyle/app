@@ -298,3 +298,7 @@ const colors = ['red', 'orange', 'yellow', 'green'];
 //giveMeFour(colors) would not work because the array is one value
 
 giveMeFour(...colors); //the ellipsis breaks up the iterable into indvidual arguments
+
+//strings are iterables, so this works on strings as well 
+const iterable = 'goat';
+giveMeFour(...iterable);
