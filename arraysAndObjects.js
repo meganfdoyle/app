@@ -96,3 +96,38 @@ let moreNums = nums;
 nums === moreNums; //true because both arrays reference the same place in memory
 
 //this is also true for objects because === when applied to reference type variables checks for equality of reference, not equality of contents
+
+//computed properties
+const role = 'Host';
+const person = 'Jools Holland';
+const role2 = 'Director';
+const person2 = 'Jessie Cameron';
+
+const team = {
+    [role]: person, //evaluates role and sets the value of role as the key
+    [role2]: person2,
+    [1 + 6 + 9]: 'sixteen' //evaluates 1+6+9 and sets the key as 16
+};
+
+const addProp = (obj, k, v) => {
+    return {
+        ...obj, //keeps the previous object
+        [k]: v //but adds or updates keys and values
+    }
+};
+
+//adding methods to objects
+const add = function (x,y) {
+    return x + y;
+};
+
+const math = {
+    add (x,y) {
+        return x + y;
+    },
+    multiply (x,y) {
+        return x * y;
+    }
+};
+
+math.add(3,4); //a method that adds two arguments, in this case, 3 & 4
