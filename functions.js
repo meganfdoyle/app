@@ -276,7 +276,7 @@ const maxGrade = grades.reduce((max, currVal) => {
 const votes = ['yes', 'yes', 'no', 'yes', 'yes', 'no', 'yes', 'yes',
     'yes', 'yes', 'yes', 'no', 'yes', 'yes', 'yes', 'no', 'no'];
 
-const results = votes.reduce((tally, val) => {
+const votingResults = votes.reduce((tally, val) => {
     tally[val] = (tally[val] || 0) + 1;
     return tally;
 }, {}); 
@@ -398,4 +398,36 @@ const runner = {
 const {first, last, time} = runner; //time is undefined
 
 //will make a variable called nation based off the value found in country
-const {country: nation} = runner; 
+const {country: nation} = runner;
+
+//nested destructuring
+const results = [{
+      first: 'Eliud',
+      last: 'Kipchoge',
+      country: 'Kenya'
+    }, 
+    {
+      first: 'Feyisa',
+      last: 'Lilesa',
+      country: 'Ethiopia'
+    },
+    {
+      first: 'Galen',
+      last: 'Rupp',
+      country: 'United States'
+    }
+];
+
+const [, {country}] = results; //the comma skips the first element
+const [{first: goldWinner}] = results; //creates a variable goldWinner equal to 'Eliud'
+
+//parameter destructuring
+function print({first, last, title}) {
+    console.log(`${first} ${last}, ${title}`);
+};
+
+const response = ['HTTP/1.1', '200 OK', 'application/json'];
+
+function parseResponse([protocol, statusCode, contentType]) {
+    console.log(`Status: ${statusCode}`);
+};
