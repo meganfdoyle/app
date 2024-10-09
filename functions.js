@@ -286,7 +286,7 @@ const greet = (person, greeting = 'Hi', punctuation = '!') => {
     console.log(`${greeting}, ${person}${punctuation}`)
 };
 
-//spread for function calls
+//spread in function calls
 function giveMeFour(a,b,c,d) {
     console.log('a', a);
     console.log('b', b);
@@ -304,3 +304,98 @@ const iterable = 'goat';
 giveMeFour(...iterable);
 
 
+//spread in array literals
+const mammals = ['dachschund', 'bobcat', 'gerbil', 'fruit bat'];
+
+const reptiles = ['leopard gecko', 'bearded dragon', 'cottonmouth'];
+
+const amphibians = ['poison dart frog', 'blue tailed skink'];
+
+//creates an array made up of the elements of reptiles and amphibians
+//rather than creating an array with two elements that are both arrays
+const coldBlooded = [...reptiles, ...amphibians]; 
+
+//this works on strings as well
+const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+console.log(alphabet.split('')); //adds each letter as an element in a new array
+
+console.log([...alphabet]); //creates an array with the same elements as split
+
+//spread in object literals
+const feline = {
+    legs: 4,
+    family: 'Felidae'
+};
+
+const canine = {
+    family: 'Caninae',
+    furry: true,
+    legs: 3
+};
+
+//JS goes through canine first, then updates conflicting properties with the next object, feline
+const catdog = {
+    ...canine,
+    ...feline
+};
+
+//objects can only be spread into another object, so this works even though the object is nested in an array
+const test = [...'hello', {
+    ...catdog
+}];
+
+//the arguments object
+// function add() {
+//     argsArray = [...arguments]; //arguments is only an array-like object, so it needs to be turned into an array to access array methods
+//     return argsArray.reduce((total, currVal) => {
+//         return total + currVal
+//     })
+// };
+//arguments does not work in arrow functions
+
+
+//the rest parameter
+function add(...nums) { //nums is the name of the array that contains all arguments
+    return nums.reduce((total, currVal) => {
+        return total + currVal
+    })
+};
+
+//the rest parameter collects all arguments that have not been matched with a parameter
+function fullName (first, last, ...titles) {
+    console.log('First: ', first)
+    console.log('Last: ', last)
+    console.log('Titles: ', titles)
+};
+
+//can be used with arrow functions!
+const multiplication = (...nums) => (
+    nums.reduce((total, currVal) => total * currVal)
+);
+
+//destructuring arrays
+const raceResults = [
+    'Eliud Kipchoge',
+    'Feyisa Lelisa',
+    'Galen Rupp',
+    'Ghirmay Ghebreslassie',
+    'Alphonce Simbu',
+    'Jared Ward'
+];
+
+//sets gold, silver, and bronze, equal to the first, second, and third elements of raceResults
+const [gold, silver, bronze] = raceResults; 
+
+//destructuring objects
+const runner = {
+    first: 'Eliud',
+    last: 'Kipchoge',
+    country: 'Kenya',
+    title: 'Elder of the Order of the Golden Heart of Kenya'
+};
+
+const {first, last, time} = runner; //time is undefined
+
+//will make a variable called nation based off the value found in country
+const {country: nation} = runner; 
