@@ -431,3 +431,96 @@ const response = ['HTTP/1.1', '200 OK', 'application/json'];
 function parseResponse([protocol, statusCode, contentType]) {
     console.log(`Status: ${statusCode}`);
 };
+
+//the 'this' keyword
+const person = {
+    first: 'John',
+    last: 'Doe',
+    fullName() {
+        return `${this.first} ${this.last}`
+    },
+    printBio() {
+        console.log(this); //references the window, not the object person
+        const fullName = this.fullName();
+        console.log(`${fullName} is a person!`);
+        
+    }
+};
+
+person.fullName(); //'John Doe'
+
+
+//invocation context
+const printBio = person.printBio; //scope of 'this' is the window
+
+const annoyer = {
+    phrases: ['cray cray', 'Totes!', 'YOLO!', 'Can\'t stop, won\'t stop'],
+    pickPhrase(){
+        const {phrases} = this;
+        const idx = Math.floor(Math.random() * phrases.length);
+        return phrases[idx];
+    },
+    start() {
+        this.timerId = setInterval(() => {//works because the 'this' within arrow functions refers to the parent function's 'this'
+            console.log(this.pickPhrase())
+        }, 3000)
+    },
+    stop() {
+        clearInterval(this.timerId)
+    }
+};
+
+
+function makeDeck() {
+    
+    const deck = [];
+
+    for(let value of values.split(',')) {
+        for (let suit of suits) {
+            deck.push({value, suit})
+        }
+    }
+    return deck;
+};
+
+function drawCard(deck) {
+    return deck.pop();
+};
+
+const myDeck = {
+    deck: [],
+    drawnCards : [],
+    suits: ['clubs', 'spades', 'hearts', 'diamonds'],
+    values: '2,3,4,5,6,7,8,9,10,J,Q,K,A',
+    initializeDeck() {
+        const {suits, values, deck} = this; //destructuring
+
+        for(let value of values.split(',')) {
+            for (let suit of suits) {
+                deck.push({value, suit})
+            }
+        };
+    },
+    drawCard() {
+        const card = this.deck.pop();
+        this.drawnCards.push(card);
+        return card;
+    },
+    drawMultiple(numCards) {
+        const cards = [];
+        for (let i = 0; i < numCards; i++) {
+            cards.push(this.drawCard());
+        }
+        return cards;
+    },
+    shuffle() { //fisher-yates shuffle
+        const {deck} = this;
+        //loop over array backwards
+        for (let i = deck.length - 1; i > 0; i--) {
+            //pick random index before current element
+            let j = Math.floor(Math.random() * (i + 1));
+            //swap
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+    }
+};
