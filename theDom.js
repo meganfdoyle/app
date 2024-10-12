@@ -20,3 +20,18 @@ document.querySelectorAll('li');
 
 //to find all elements with the class of special on the page
 document.querySelectorAll('.special');
+
+const allLis = document.querySelectorAll('li'); //not an array but an array-like object; we can iterate over it!
+
+for (let i = 0; i < allLis.length; i++) {
+    console.log(allLis[i].innerText);
+};
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+
+allLis.forEach((li, i ) => { //in line styles always beat class styles because it's added to the element itself
+    const color = colors[i];
+    li.style.color = color;
+});
+
+//getComputedStyle is a great way to figure out what's going on on the page

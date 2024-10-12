@@ -3,6 +3,11 @@ h1 {
     font-size: 25px;
 }
 
+h1:hover {
+    color:green;
+    font-size: 30px;
+}
+
 #galaxy-photo{ /* hastag means this is an ID */
     width: 250px;
 }
