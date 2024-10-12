@@ -1,0 +1,18 @@
+h1 {
+    color: rgb(0, 255, 115);
+    font-size: 25px;
+}
+
+#galaxy-photo{ /* hastag means this is an ID */
+    width: 250px;
+}
+
+.special { /* dot means this is a class */
+    color: teal;
+    font-size: 20px;
+    border: 1px solid teal;
+}
+
+input[type="text"] {
+    width: 210px;
+}

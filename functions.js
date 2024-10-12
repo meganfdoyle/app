@@ -169,7 +169,7 @@ function delayedGreet() {
 
 const btn = document.querySelector('button');
 btn.addEventListener('click', function () {
-    alert('What did I JUST say.')
+    alert('Hello, Window!')
 });
 
 //array callback methods
