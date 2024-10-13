@@ -22,3 +22,13 @@ input[type="text"] {
     width: 210px;
 }
 
+.todo {
+    font-size: 25px;
+    color: olivedrab
+}
+
+.done {
+    color: gray;
+    text-decoration: line-through;
+    opacity: 50%;
+}

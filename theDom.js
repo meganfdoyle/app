@@ -29,9 +29,23 @@ for (let i = 0; i < allLis.length; i++) {
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
-allLis.forEach((li, i ) => { //in line styles always beat class styles because it's added to the element itself
-    const color = colors[i];
-    li.style.color = color;
-});
+// allLis.forEach((li, i ) => { //in line styles always beat class styles because it's added to the element itself
+//     const color = colors[i];
+//     li.style.color = color;
+// });
 
 //getComputedStyle is a great way to figure out what's going on on the page
+
+// const todo = document.querySelectorAll('#todos .todo');
+const todos = document.querySelectorAll('#todos .todo');
+
+const todoBtns = document.querySelectorAll('ul button');
+
+//strikes through an li in the todo class if the button to the right of it is clicked
+for (let i = 0; i < todos.length; i++) {
+    //specifies the button to the right of the current li    
+    todoBtns[i].addEventListener('click', function () { 
+        //toggles the class 'done' when the button to the right of the current li is clicked
+        todos[i].classList.toggle('done');
+    });
+};

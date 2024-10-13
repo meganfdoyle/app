@@ -455,7 +455,7 @@ const printBio = person.printBio; //scope of 'this' is the window
 
 const annoyer = {
     phrases: ['cray cray', 'Totes!', 'YOLO!', 'Can\'t stop, won\'t stop'],
-    pickPhrase(){
+    pickPhrase() {
         const {phrases} = this;
         const idx = Math.floor(Math.random() * phrases.length);
         return phrases[idx];
