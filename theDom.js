@@ -29,14 +29,16 @@ for (let i = 0; i < allLis.length; i++) {
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
+//the code below will change the color of all li's
 // allLis.forEach((li, i ) => { //in line styles always beat class styles because it's added to the element itself
 //     const color = colors[i];
 //     li.style.color = color;
 // });
 
+
 //getComputedStyle is a great way to figure out what's going on on the page
 
-// const todo = document.querySelectorAll('#todos .todo');
+
 const todos = document.querySelectorAll('#todos .todo');
 
 const todoBtns = document.querySelectorAll('ul button');
@@ -49,3 +51,25 @@ for (let i = 0; i < todos.length; i++) {
         todos[i].classList.toggle('done');
     });
 };
+
+const newh2 = document.createElement('h2'); //creates an empty element newh2
+
+newh2.innerText = 'I am an h2 added to the DOM using JavaScript!' //changes newh2's innerText
+
+newh2.classList.add('special'); //changes newh2's class to special
+
+//to move newh2 to the DOM, we need to select an element to append it to
+const section = document.querySelector('section');
+
+section.appendChild(newh2); //appends newh2 to the end of section
+
+const newImg = document.createElement('img'); //creates an empty image element
+
+//adds a source for the image
+newImg.src = 'https://images.unsplash.com/photo-1728160641449-e64ea3e7f7ab?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+
+//changes newImg's width to 300 pixels
+newImg.style.width = '300px';
+
+//appends newImg to the end of body
+document.body.appendChild(newImg);

@@ -144,8 +144,8 @@ function multiplyBy(num) {
     }
 };
 
-const triple = multiplyBy(3);
-const double = multiplyBy(2);
+const triple = multiplyBy(3); //uses multiplyBy to make a function that triples a given number
+const double = multiplyBy(2); //uses multiplyBy to make a function that doubles a given number
 
 //returns a function that checks whether an argument is between two numbers
 function makeBetweenFunc(x,y) {
