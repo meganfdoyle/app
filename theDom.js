@@ -73,3 +73,31 @@ newImg.style.width = '300px';
 
 //appends newImg to the end of body
 document.body.appendChild(newImg);
+
+
+//append, prepend, and insertBefore
+
+const parentUL = document.querySelector('ul');
+const newLI = document.createElement('li');
+const firstLI = document.querySelector('li.todo');
+const lastLI = document.querySelectorAll('li.todo')[2];
+
+newLI.innerText = 'I AM A NEW LI';
+
+//syntax for insertBefore is parent.insertBefore(element you want to insert, element you want to follow the first element)
+parentUL.insertBefore(newLI, lastLI); //inserts newLI before lastLI
+
+const italics = document.createElement('i');
+italics.innerText = 'I AM ITALICS!';
+
+const firstP = document.querySelector('p');
+
+firstP.insertAdjacentElement('beforeend', italics); //inserts italics before the end of the of the paragraph tag
+
+firstP.prepend(italics, newLI); //adds element(s) to the beginning of the tag; can insert multiple elements at a time vs appendChild() when you can only add 1
+
+/* 
+removeChild() and remove() work in similar ways to appendChild() and append()
+
+parent.removeChild(child) vs element.remove()
+*/
