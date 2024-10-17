@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Arrays and Objects</title>
     <link rel="stylesheet" href="app.css">
 </head>
@@ -15,6 +17,7 @@
     <form action="">
         <input type="range" min="10" max="50">
     </form>
+    <input id="username" placeholder="username" typer="text">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex tempore assumenda dolor quaerat praesentium ducimus quae temporibus harum omnis? Ipsa atque recusandae repellat vero perspiciatis officiis reiciendis sint id earum?</p>
     <form action="">
         <input type="text" placeholder="What's your favorite constellation?"?>
@@ -33,13 +36,12 @@
         alt="An image of a person looking up at a galaxy"</li>
     </ul>
     <section>
-        <ul>
-            <li>Carrots</li>
-            <li class="special">Broccoli</li>
-            <li>Bok choy</li>
-        </ul>
+        <h3>Shopping List</h3>
+        <input type="text" id="addItem" placeholder="Enter an item">
+        <ul id="items"></ul>
     </section>
 
+    <h1 id="color">Pick a color, any color!</h1>
     <section id="boxes"></section>
 
     <script src = "theDom.js"></script>

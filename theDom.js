@@ -132,30 +132,61 @@ window.addEventListener('scroll', function ()  {
 
 const impossibleBtn = document.querySelector('#impossible');
 
-impossibleBtn.addEventListener('mouseover', function () {
-    //the window has an innerHeight and an innerWidth property which can be used to find the edges
-    const height = Math.floor(Math.random() * window.innerHeight);
-    const width = Math.floor(Math.random() * window.innerWidth);
+// impossibleBtn.addEventListener('mouseover', function () {
+//     //the window has an innerHeight and an innerWidth property which can be used to find the edges
+//     const height = Math.floor(Math.random() * window.innerHeight);
+//     const width = Math.floor(Math.random() * window.innerWidth);
     
-    impossibleBtn.style.left = `${width}px`;
-    impossibleBtn.style.top = `${height}px`;
+//     impossibleBtn.style.left = `${width}px`;
+//     impossibleBtn.style.top = `${height}px`;
 
-});
+// });
 
-impossibleBtn.addEventListener('mouseover', function () {
-    impossibleBtn.innerText = 'You got me!';
-    document.body.style.backgroundColor = 'green';
-});
+// impossibleBtn.addEventListener('mouseover', function () {
+//     impossibleBtn.innerText = 'You got me!';
+//     document.body.style.backgroundColor = 'green';
+// });
 
 //attach eventListeners to multiple elements
 const container = document.querySelector('#boxes');
 
+const changeColor = function () {
+    const h1 = document.querySelector('#color');
+     //inside of an event handler, 'this' will refer to the individual element that the eventListener has been added to
+    h1.style.color = this.style.backgroundColor;
+};
+
+
 for (let color of colors) {
     const box = document.createElement('div');
     box.style.backgroundColor = color;
+    //adds the class of box to the current box
     box.classList.add('box');
-    console.log(box);
+    //adds a box of the current color to the end of container
+    container.appendChild(box);
+    //changes the text color of h1 to the color of the box being clicked
+    box.addEventListener('click', changeColor); 
 };
+
+//key events
+document.body.addEventListener('keypress', function(e) {
+    console.log(e);
+});
+
+const input = document.querySelector('#username');
+
+//listens for any time any key is pressed down whether or not the input is changed
+input.addEventListener('keydown', function (e) {
+    console.log('Key down')
+});
+
+/*key up and key down would be better for games where you would want shift or arrow 
+keys to be taken into account
+
+key press would be better if you need to know when something is changing in the input
+*/
+
+
 
 
 

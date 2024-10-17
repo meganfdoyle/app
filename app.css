@@ -49,5 +49,9 @@ input[type="text"] {
 
 .box {
     width: 200px;
-    height: 500px;
+    height: 100px;
+}
+
+#color {
+    text-align: center;
 }
