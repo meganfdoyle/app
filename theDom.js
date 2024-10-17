@@ -27,7 +27,7 @@ for (let i = 0; i < allLis.length; i++) {
     console.log(allLis[i].innerText);
 };
 
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
 
 //the code below will change the color of all li's
 // allLis.forEach((li, i ) => { //in line styles always beat class styles because it's added to the element itself
@@ -101,3 +101,62 @@ removeChild() and remove() work in similar ways to appendChild() and append()
 
 parent.removeChild(child) vs element.remove()
 */
+
+
+//DOM Events
+const btnClicker = document.querySelector('#clicker');
+
+//JS requires a function for events; the below is NOT recommended
+/*
+btnClicker.onclick = function () {
+    console.log('You clicked me')
+};*/
+
+//addEventListener
+
+btnClicker.addEventListener('click', function () {
+    alert('Clicked!!')
+});
+
+btnClicker.addEventListener('mouseover', function () {
+    btnClicker.innerText = 'Stop touching me';
+});
+
+btnClicker.addEventListener('mouseout', function () {
+    btnClicker.innerText = 'Clicker';
+}); 
+
+window.addEventListener('scroll', function ()  {
+    console.log('Stop scrolling');
+});
+
+const impossibleBtn = document.querySelector('#impossible');
+
+impossibleBtn.addEventListener('mouseover', function () {
+    //the window has an innerHeight and an innerWidth property which can be used to find the edges
+    const height = Math.floor(Math.random() * window.innerHeight);
+    const width = Math.floor(Math.random() * window.innerWidth);
+    
+    impossibleBtn.style.left = `${width}px`;
+    impossibleBtn.style.top = `${height}px`;
+
+});
+
+impossibleBtn.addEventListener('mouseover', function () {
+    impossibleBtn.innerText = 'You got me!';
+    document.body.style.backgroundColor = 'green';
+});
+
+//attach eventListeners to multiple elements
+const container = document.querySelector('#boxes');
+
+for (let color of colors) {
+    const box = document.createElement('div');
+    box.style.backgroundColor = color;
+    box.classList.add('box');
+    console.log(box);
+};
+
+
+
+

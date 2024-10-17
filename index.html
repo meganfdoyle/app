@@ -8,7 +8,13 @@
 </head>
 <body>
     <h1>My Webpage</h1>
-    <button>Click me!</button>
+    <button>Click me!</button> <!-- could add style or code within <> but this is bad practice because it
+    spreads your JS and CSS all over the place-->
+    <button id="clicker">Clicker</button>
+    <button id="impossible">Try to click me</button>
+    <form action="">
+        <input type="range" min="10" max="50">
+    </form>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex tempore assumenda dolor quaerat praesentium ducimus quae temporibus harum omnis? Ipsa atque recusandae repellat vero perspiciatis officiis reiciendis sint id earum?</p>
     <form action="">
         <input type="text" placeholder="What's your favorite constellation?"?>
@@ -23,7 +29,7 @@
         <a href="http://www.google.com">Link to Google</a>
         <li class="special">Special first item of an unordered list.</li>
         <li>Second item</li>
-        <li>A regularly sized image in an unordered list<img id="galaxy-photo" src="https://plus.unsplash.com/premium_photo-1728037068190-15a5bd1d6573?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        <li>A regularly sized image in an unordered list <img id="galaxy-photo" src="https://plus.unsplash.com/premium_photo-1728037068190-15a5bd1d6573?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="An image of a person looking up at a galaxy"</li>
     </ul>
     <section>
@@ -33,6 +39,8 @@
             <li>Bok choy</li>
         </ul>
     </section>
+
+    <section id="boxes"></section>
 
     <script src = "theDom.js"></script>
 </body>
