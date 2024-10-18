@@ -169,9 +169,9 @@ for (let color of colors) {
 };
 
 //key events
-document.body.addEventListener('keypress', function(e) {
-    console.log(e);
-});
+// document.body.addEventListener('keypress', function(e) {
+//     console.log(e);
+// });
 
 const input = document.querySelector('#username');
 
@@ -180,13 +180,33 @@ input.addEventListener('keydown', function (e) {
     console.log('Key down')
 });
 
-/*key up and key down would be better for games where you would want shift or arrow 
-keys to be taken into account
+/*Key up and key down would be better for games where you would want shift or arrow 
+keys to be taken into account. They will react whenever any key is pressed, e.g., 
+shift + k is two key ups and two key downs
 
-key press would be better if you need to know when something is changing in the input
+Key press would be better if you need to know when something is changing in the input, e.g.,
+shift + k results in K but key press only captures K
 */
 
+const addItemInput = document.querySelector('#addItem');
+const itemsUL = document.querySelector('#items');
 
+addItemInput.addEventListener('keypress', function (e) {
+    //"key" is a property of the of the KeyboardEvent object that tells us which key was pressed
+    if(e.key === 'Enter') {
+        if (!this.value) return;
+        //saves the current value in the input to newListItem
+        const newItemText = this.value;
+        //creates a new li
+        const newItem = document.createElement('li');
+        //sets the innerText of the new li to the value currently in the input
+        newItem.innerText = newItemText;
+        //adds the new item to the ul
+        itemsUL.appendChild(newItem);
+        //clears the input after the new li is added
+        this.value = "";
+    };
+});
 
 
 
