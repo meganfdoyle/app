@@ -208,6 +208,59 @@ addItemInput.addEventListener('keypress', function (e) {
     };
 });
 
+//form events & preventDefault
+const form = document.querySelector('#signup');
+const creditCard = document.querySelector('#cc');
+const termsCheckbox = document.querySelector('#terms');
+const veggieSelect = document.querySelector('#veggie');
+
+form.addEventListener('submit', function (e) {
+    console.log('cc', creditCard.value);
+    console.log('terms', termsCheckbox.checked);
+    console.log('veggie', veggieSelect.value);
+    //prevents default behavior
+    //in this case, sending a get request to whatever url is specified
+    e.preventDefault();
+});
+
+//input and change events
+
+const formData = {};
+
+for (let input of [creditCard, termsCheckbox, veggieSelect]) {
+    //called every time the input is changed, not just when the user submits
+    input.addEventListener('input', ({target}) => {
+        const {name, type, value, checked} = target;
+        //checks if the element is a checkbox bc the value is always on but we want the checked property
+        formData[name] = type === 'checkbox' ? checked : value;
+        console.log(formData);
+    })
+};
+
+//change works in a similar way but the input isn't registered unless the user presses
+//enter or the input is blurred (the user clicks out of the input)
 
 
+// creditCard.addEventListener('input', (e) => {
+//     formData['cc'] = e.target.value;
+//     console.log('cc changed', e);
+// });
+
+// veggieSelect.addEventListener('input', (e) => {
+//     formData['veggie'] = e.target.value;
+//     console.log('veggie changed', e);
+// });
+
+// termsCheckbox.addEventListener('input', (e) => {
+//     formData['terms'] = e.target.checked;
+//     console.log('terms changed', e);
+// });
+
+/*
+The call stack is a mechanism the JS interpreter uses to keep track of its place in a script
+that calls multiple functions.
+
+With the stack, the last thing you put in will be on top, so it will be the first thing you
+remove.
+*/
 
