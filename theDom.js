@@ -262,5 +262,14 @@ that calls multiple functions.
 
 With the stack, the last thing you put in will be on top, so it will be the first thing you
 remove.
+
+Dev tools > Sources > JS file > Click on the number to the left of a function call
+- creates a break point
+Call stack > Step into next function call
+*/
+
+/* 
+JS is single threaded, meaning at any given point in time, a single JS thread is running
+one line of code at most
 */
 
