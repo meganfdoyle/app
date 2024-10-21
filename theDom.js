@@ -271,5 +271,9 @@ Call stack > Step into next function call
 /* 
 JS is single threaded, meaning at any given point in time, a single JS thread is running
 one line of code at most
+
+Browsers (usually written in C++) can do tasks for JS, like setting timeouts or making requests
+JS call stack recognizes web API functions and passes them to the browser. After the tasks
+are completed, they return to JS and are pushed onto the call stack in the callback queue                                              
 */
 
