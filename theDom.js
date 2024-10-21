@@ -277,3 +277,97 @@ JS call stack recognizes web API functions and passes them to the browser. After
 are completed, they return to JS and are pushed onto the call stack in the callback queue                                              
 */
 
+/*
+getBoundingClientRect() tells you information about the specified element 
+*/
+
+/*promises (objects representing the eventual completion or failure of an async operation)
+MUCH easier to read & debug than nested callbacks
+*/
+
+//when creating a promise, pass in a function with two parameters, usually resolve and reject,
+//which are functions themselves
+
+//returns a new promise
+const makeNewPromise = () => {
+    //if a promise isn't resolved or rejected, its status is "pending"
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const rand = Math.random();
+            if (rand < 0.5) {
+                resolve();
+            } else {
+            reject();
+            }
+        }, 3000);
+    });
+};
+
+makeNewPromise()
+    //calling the .then method on a promise will run the following code if the promise is resolved
+    .then(() => {
+        //console.log('Promise resolved! :D');
+    }) //no semi colon here!
+    //calling the .catch method on a promise will run the following code if the promise is rejected
+    .catch(() => {
+        //console.log('Promise rejected :(');
+    });
+
+const fakeRequest = (url) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const pages = {
+				'/users'        : [
+					{ id: 1, username: 'Bilbo' },
+					{ id: 5, username: 'Esmerelda' }
+				],
+				'/users/1'      : {
+					id        : 1,
+					username  : 'Bilbo',
+					upvotes   : 360,
+					city      : 'The Shire',
+					topPostId : 454321
+				},
+				'/users/5'      : {
+					id       : 5,
+					username : 'Sammy',
+					upvotes  : 571,
+					city     : 'Lisbon'
+				},
+				'/posts/454321' : {
+					id    : 454321,
+					title :
+						'Hey everyone, it\'s me, ya boy.'
+				},
+				'/about': 'This is the about page.'
+            };
+            const data = pages[url];
+            if (data) {
+                resolve({status: 200, data});
+            } else {
+                reject({status: 404});
+            };
+        }, 2000);
+    });
+};
+
+//promise chaining
+fakeRequest('/users')
+    .then((res) => {
+        console.log(res);
+        const id = res.data[0].id;
+        return fakeRequest(`/users/${id}`);
+    })
+    .then((res) => {
+        console.log(res);
+        const postId = res.data.topPostId;
+        return fakeRequest(`/posts/${postId}`);
+    })
+    .then((res) => {
+        console.log(res);
+    })
+    //only need one .catch for all the .then calls
+    .catch((err) => {
+		console.log('OH NO!', err);
+	});
+
