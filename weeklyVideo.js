@@ -1,3 +1,67 @@
+/*
+classList
+ - Allows you to change an element's class
+ - toggle(), add(), remove(), replace(old, new)
+ */
+
+ const taskList = document.querySelectorAll('#taskList .task');
+
+ const taskBtns = document.querySelectorAll('ul button');
+ 
+ 
+ for (let i = 0; i < taskList.length; i++) {
+     //specifies the button to the left of the current li    
+     taskBtns[i].addEventListener('click', function () { 
+         //toggles the class 'done' when the button to the right of the current li is clicked
+         taskList[i].classList.toggle('done');
+     });
+ };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const apparition = '                            ⢀⣠⣤⣶⣶⣶⣶⣶⣶⣤⣄⣀' +
 '\n                        ⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣄'+
 '\n                     ⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄'+

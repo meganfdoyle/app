@@ -371,3 +371,30 @@ fakeRequest('/users')
 		console.log('OH NO!', err);
 	});
 
+/*
+AJAX: Asynchronous JavaScript And XML
+  - XML (Extensible Markup Language) is older and JSON is used more often nowadays; kind of a 
+    parent to HTML
+     - Does not support promises
+     - Clunky syntax
+  - Using requests to communicate with the server behind the scenes rather than in between
+    page loads
+    - The response is usually in the form of JSON (a format for sending data)
+  - JSON: Java Script Object Notation
+     - Every key must be a string with double quotes, can use arrays
+     - Can't store more complicated things like functions
+     - Not actual JS but very close, so we can translate very easily (JSON.parse())
+*/
+
+/*
+Fetch API
+  - Newer way of making requests via JS
+  - Supports promises but not supported in IE
+  - The content of the response is a ReadableStream
+     - response.json() can be used to access the stream, but it takes time
+     - .json() returns a promise, so we need to use .json().then()
+  - Only rejects 
+*/
+
+
+
