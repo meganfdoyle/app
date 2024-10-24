@@ -420,7 +420,7 @@ axios
 	});
 
 
-const fetchNextPlanets = (url = 'https://swapi.co/api/planets/') => {
+const fetchNextPlanets = (url = 'https://swapi.dev/api/planets/') => {
 	console.log(url);
 	return axios.get(url);
 };
@@ -432,23 +432,54 @@ const printPlanets = ({ data }) => {
 	return Promise.resolve(data.next);
 };
 
-fetchNextPlanets()
-	.then(printPlanets)
-	.then(fetchNextPlanets)
-	.then(printPlanets)
-	.then(fetchNextPlanets)
-	.then(printPlanets)
-	.catch((err) => {
-		console.log('ERROR!!', err);
-	});
+// fetchNextPlanets()
+// 	.then(printPlanets)
+// 	.then(fetchNextPlanets)
+// 	.then(printPlanets)
+// 	.then(fetchNextPlanets)
+// 	.then(printPlanets)
+// 	.catch((err) => {
+// 		console.log('ERROR!!', err);
+// 	});
 
 /*
 async
- - keyword comes before a function
- - async functions return a promise
+ - keyword comes before a function, making it return a promise
 */
 
+async function greet() {
+    return 'Hello!!' //promise is resolved with this value
+};
 
-//await
+greet().then((val) => {
+    console.log('Promise resolved with: ', val)
+});
+
+async function add(x,y) {
+    if(typeof x !== 'number' || typeof y !== 'number') {
+        //throws an error if either x or y is no a number
+        throw 'X and Y must be numbers!';
+    }
+    return x + y;
+};
+
+add('e', 'r')
+    .then((val) => {
+        console.log('Promise resolved with: ', val);
+    })
+    .catch((err) => {
+        console.log('Promise rejected with: ', err);
+    })
 
 
+/*
+await
+ - pauses execution of the async function, waiting for a promise to be resolved
+*/
+
+async function getPlanets() {
+    const res = await axios.get('https://swapi.dev/api/planets/');
+    console.log(res.data); //only runs once the previous line is complete
+};
+
+getPlanets();
