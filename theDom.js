@@ -313,63 +313,63 @@ makeNewPromise()
         //console.log('Promise rejected :(');
     });
 
-const fakeRequest = (url) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const pages = {
-				'/users'        : [
-					{ id: 1, username: 'Bilbo' },
-					{ id: 5, username: 'Esmerelda' }
-				],
-				'/users/1'      : {
-					id        : 1,
-					username  : 'Bilbo',
-					upvotes   : 360,
-					city      : 'The Shire',
-					topPostId : 454321
-				},
-				'/users/5'      : {
-					id       : 5,
-					username : 'Sammy',
-					upvotes  : 571,
-					city     : 'Lisbon'
-				},
-				'/posts/454321' : {
-					id    : 454321,
-					title :
-						'Hey everyone, it\'s me, ya boy.'
-				},
-				'/about': 'This is the about page.'
-            };
-            const data = pages[url];
-            if (data) {
-                resolve({status: 200, data});
-            } else {
-                reject({status: 404});
-            };
-        }, 2000);
-    });
-};
+// const fakeRequest = (url) => {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             const pages = {
+// 				'/users'        : [
+// 					{ id: 1, username: 'Bilbo' },
+// 					{ id: 5, username: 'Esmerelda' }
+// 				],
+// 				'/users/1'      : {
+// 					id        : 1,
+// 					username  : 'Bilbo',
+// 					upvotes   : 360,
+// 					city      : 'The Shire',
+// 					topPostId : 454321
+// 				},
+// 				'/users/5'      : {
+// 					id       : 5,
+// 					username : 'Sammy',
+// 					upvotes  : 571,
+// 					city     : 'Lisbon'
+// 				},
+// 				'/posts/454321' : {
+// 					id    : 454321,
+// 					title :
+// 						'Hey everyone, it\'s me, ya boy.'
+// 				},
+// 				'/about': 'This is the about page.'
+//             };
+//             const data = pages[url];
+//             if (data) {
+//                 resolve({status: 200, data});
+//             } else {
+//                 reject({status: 404});
+//             };
+//         }, 2000);
+//     });
+// };
 
 //promise chaining
-fakeRequest('/users')
-    .then((res) => {
-        console.log(res);
-        const id = res.data[0].id;
-        return fakeRequest(`/users/${id}`);
-    })
-    .then((res) => {
-        console.log(res);
-        const postId = res.data.topPostId;
-        return fakeRequest(`/posts/${postId}`);
-    })
-    .then((res) => {
-        console.log(res);
-    })
-    //only need one .catch for all the .then calls
-    .catch((err) => {
-		console.log('OH NO!', err);
-	});
+// fakeRequest('/users')
+//     .then((res) => {
+//         console.log(res);
+//         const id = res.data[0].id;
+//         return fakeRequest(`/users/${id}`);
+//     })
+//     .then((res) => {
+//         console.log(res);
+//         const postId = res.data.topPostId;
+//         return fakeRequest(`/posts/${postId}`);
+//     })
+//     .then((res) => {
+//         console.log(res);
+//     })
+//     //only need one .catch for all the .then calls
+//     .catch((err) => {
+// 		console.log('OH NO!', err);
+// 	});
 
 /*
 AJAX: Asynchronous JavaScript And XML
@@ -393,8 +393,62 @@ Fetch API
   - The content of the response is a ReadableStream
      - response.json() can be used to access the stream, but it takes time
      - .json() returns a promise, so we need to use .json().then()
-  - Only rejects 
+  - Only rejects in the case of a network failure or if anything prevents the request
+     from completing
 */
 
+
+/* 
+  Axios
+  - Not native to JS like XML and fetch
+  - External library for making HTTP requests
+*/
+
+axios
+	.get('https://pokeapi.co/api/v2/pokemon/ditto')
+	.then(({data}) => {
+		//we don't have to parse the JSON
+		console.log(data);
+        for (let game of data.game_indices) {
+            //logs the name of all games in which Ditto appears
+            console.log(game.version.name)
+        };
+	})
+	.catch((err) => {
+		console.log('IN CATCH CALLBACK!!!');
+		console.log(err);
+	});
+
+
+const fetchNextPlanets = (url = 'https://swapi.co/api/planets/') => {
+	console.log(url);
+	return axios.get(url);
+};
+const printPlanets = ({ data }) => {
+	console.log(data);
+	for (let planet of data.results) {
+		console.log(planet.name);
+	}
+	return Promise.resolve(data.next);
+};
+
+fetchNextPlanets()
+	.then(printPlanets)
+	.then(fetchNextPlanets)
+	.then(printPlanets)
+	.then(fetchNextPlanets)
+	.then(printPlanets)
+	.catch((err) => {
+		console.log('ERROR!!', err);
+	});
+
+/*
+async
+ - keyword comes before a function
+ - async functions return a promise
+*/
+
+
+//await
 
 
