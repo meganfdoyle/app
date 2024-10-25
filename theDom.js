@@ -477,9 +477,143 @@ await
  - pauses execution of the async function, waiting for a promise to be resolved
 */
 
+// async function getPlanets() {
+//     const res = await axios.get('https://swapi.dev/api/planets/');
+//     console.log(res.data); //only runs once the previous line is complete
+// };
+
+// getPlanets().catch((err) => {
+//     console.log(err)
+// });
+
+//error handling
 async function getPlanets() {
-    const res = await axios.get('https://swapi.dev/api/planets/');
-    console.log(res.data); //only runs once the previous line is complete
+    try {
+        const res = await axios.get('https://swapi.dev/api/planets/');
+        console.log(res.data);
+    } catch (e) {
+        console.log('In catch', e);
+    }
 };
 
 getPlanets();
+
+//multiple awaits
+
+const moveX = (element, amount, delay) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			const bodyBoundary = document.body.clientWidth;
+			const elRight = element.getBoundingClientRect().right;
+			const currLeft = element.getBoundingClientRect().left;
+			if (elRight + amount > bodyBoundary) {
+				reject({ bodyBoundary, elRight, amount });
+			}
+			else {
+				element.style.transform = `translateX(${currLeft + amount}px)`;
+				resolve();
+			}
+		}, delay);
+	});
+};
+
+const awaitBtn = document.querySelector('#await');
+async function animateRight(el, amt) {
+	await moveX(el, amt, 1000);
+    //no need for try/catch
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+	await moveX(el, amt, 1000);
+}
+animateRight(awaitBtn, 100).catch((err) => {
+	console.log('Hit the right edge! Now Moving left!');
+	//moves the button in the opposite direction, in this case, left
+    animateRight(awaitBtn, -100);
+});
+
+//parallel vs sequential requests
+
+//SEQUENTIAL
+// async function get3Pokemon() {
+        //waits for a resolved value and stores that value in the variable
+//     const poke1 = await axios.get('https://pokeapi.co/api/v2/pokemon/1');
+//     const poke2 = await axios.get('https://pokeapi.co/api/v2/pokemon/2');
+//     const poke3 = await axios.get('https://pokeapi.co/api/v2/pokemon/3');
+//     console.log(poke1.data);
+//     console.log(poke2.data);
+//     console.log(poke3.data);
+// };
+
+//PARALLEL
+// async function get3Pokemon() {
+//     //requests are being sent roughly at the same time
+//     //these variables are promises
+//     const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1');
+//     const prom2 = axios.get('https://pokeapi.co/api/v2/pokemon/2');
+//     const prom3 = axios.get('https://pokeapi.co/api/v2/pokemon/3');
+//     poke1 = await prom1;
+//     poke2 = await prom2;
+//     poke3 = await prom3;
+//     console.log(poke1.data);
+//     console.log(poke2.data);
+//     console.log(poke3.data);
+// };
+
+//get3Pokemon();
+
+function changeBodyColor(color,delay) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            document.body.style.backgroundColor = color;
+            resolve();
+        }, delay);
+    });
+};
+
+//SEQUENTIAL - each color is visible before the next change
+async function lightShow() {
+    await changeBodyColor('teal', 1000);
+    await changeBodyColor('maroon', 1000);
+    await changeBodyColor('violet', 1000);
+    await changeBodyColor('aquamarine', 1000);
+};
+
+//PARALLEL - only aquamarine is visible because these run at roughly the same time
+async function lightShow() {
+    const p1 = changeBodyColor('teal', 1000);
+    const p2 =  changeBodyColor('maroon', 1000);
+    const p3 = changeBodyColor('violet', 1000);
+    const p4 = changeBodyColor('aquamarine', 1000);
+    await p1;
+    await p2;
+    await p3;
+    await p4;
+};
+
+// lightShow();
+
+//Promise.all accepts an array of promises
+async function get3Pokemon() {
+    //requests are being sent roughly at the same time
+    //these variables are promises
+    const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1');
+    const prom2 = axios.get('https://pokeapi.co/api/v2/pokemon/2');
+    const prom3 = axios.get('https://pokeapi.co/api/v2/pokemon/3');
+    const results = await Promise.all([prom1, prom2, prom3]);
+    //console.log(results);
+    printPokemon(results);
+};
+
+function printPokemon(results) {
+    for (let pokemon of results) {
+        console.log(pokemon.data.name);
+    };
+};
+
+get3Pokemon();
