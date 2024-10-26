@@ -617,3 +617,119 @@ function printPokemon(results) {
 };
 
 get3Pokemon();
+
+/* 
+prototypes
+ - template objects
+ - ex. every array has a property called __proto__ which is a reference to a blueprint object
+*/
+
+String.prototype.yell = function() {
+    return `${this.toUpperCase()}!!`; //this refers to the string itself
+};
+
+Array.prototype.pop = function () {
+    //replaces the previous pop() method
+    return 'Sorry, I like that element. I\'ll never pop it off!'
+};
+
+//prototype is the actual object where we can add methods/properties
+//__proto__ is a reference to the prototype object
+
+//factory functions make objects and return them; not commonly used
+
+// function hex (r, g, b) {
+//     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+// };
+
+// function rgb(r, g, b) {
+//     return `rgb(${r}, ${g}, ${b})`
+// };
+
+// function makeColor(r,g,b) {
+//     const color = {};
+//     color.r = r;
+//     color.g = g;
+//     color.b = b;
+//     color.rbg = function () {
+//         const {r,g,b} = this; 
+//         return `rgb(${r}, ${g}, ${b})`
+//     };
+//     color.hex = function() {
+//         const {r,g,b} = this; 
+//         return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+//     }
+
+//     return color;
+// };
+
+//constructor functions (more common than factory functions)
+
+//contructor functions get capital first letters
+// function Color(r,g,b) {
+//     //this refers to the window 
+//     this.r = r;
+//     this.g = g;
+//     this.b = b;
+// };
+
+/*when you call a constructor function with the keyword 'new', the newly created object
+is the this context
+DO NOT USE ARROW FUNCTIONS because 'this' behaves differently in them
+*/
+// new Color(25, 230, 47);
+
+// Color.prototype.rgb = function() {
+//     //this will be set to whatever is on the left side of the dot notation
+//     const {r,g,b} = this;
+//     return `rgb(${r}, ${g}, ${b})`;
+// };
+
+// Color.prototype.hex = function () {
+//     const {r,g,b} = this; 
+//     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+// };
+
+// Color.prototype.rgba = function (a = 1.0) {
+//     const {r,g,b} = this;
+//     return `rgba(${r}, ${g}, ${b}, ${a})`;
+// };
+
+/*
+JS classes also use an uppercase first letter
+ - requires capital letter, constructor function, and new keyword
+*/
+
+class Color {
+    //a function that will execute immediately whenever a new Color is created
+    constructor(r, g, b, name) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.name = name;
+    };
+    greet() {
+        return `Hello from ${this.name}!`
+    };
+    innerRGB() {
+        const {r,g,b} = this;
+        return `${r}, ${g}, ${b}`;
+    }
+    rgb() {
+        //this will be set to whatever is on the left side of the dot notation
+        return `rgb(${this.innerRGB()})`;
+    };
+    hex() {
+        const {r,g,b} = this; 
+        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    };
+    rgba(a = 1.0) {
+        const {r,g,b} = this;
+        return `rgba(${this.innerRGB()}, ${a})`;
+    };
+};
+
+//creates new empty object and sets the value of 'this' to that object
+const red = new Color(255, 67, 89, 'tomato');
+
+//hsl = hue (0-360 like a color wheel), saturation (0-100%), lightness (0-100%)
