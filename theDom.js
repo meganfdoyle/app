@@ -733,3 +733,42 @@ class Color {
 const red = new Color(255, 67, 89, 'tomato');
 
 //hsl = hue (0-360 like a color wheel), saturation (0-100%), lightness (0-100%)
+
+
+//extends, super, and subclasses
+
+//base class
+class Pet {
+    //this code was in both Cat and Dog
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    eat() {
+        return `${this.name} is eating.`
+    }
+}
+
+
+//no constructors on these classes that extend Pet
+class Cat extends Pet {
+    constructor(name, age, livesLeft = 9) {
+        //references the super class, i.e., what we're extending from
+        super(name, age)
+        this.livesLeft = livesLeft;
+    }
+    meow() {
+        return 'Meow!'
+    }
+};
+
+class Dog extends Pet {
+    woof() {
+        return 'Woof!'
+    }
+    //this code will run because eat() is specified
+    //if eat() weren't specified on the Dog prototype, it would look to the Pet prototype 
+    eat() {
+        return `${this.name} scarfs its food.`
+    }
+};
