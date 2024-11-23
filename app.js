@@ -189,3 +189,29 @@ const citizen = {
 for (let k in citizen){
     console.log(`${k}: ${citizen[k]}`);
 };
+
+
+
+//Guessing Game
+let maximum = parseInt(prompt("Enter the maximum number!"));
+
+while (!maximum) {
+    maximum = parseInt(prompt("Enter a valid maximum number!"));
+}
+
+const target = Math.floor(Math.random() * maximum) + 1;
+
+let guess = prompt('Guess the number!');
+let attempts = 1;
+
+while (guess !== target) {
+    attempts++;
+    if (guess < target) {
+        guess = parseInt(prompt('Too low. Guess again:'));
+    } else {
+        guess = parseInt(prompt('Too high. Guess again:'));
+    };
+};
+
+console.log(`You got it! It took ${attempts} tries.`)
+
