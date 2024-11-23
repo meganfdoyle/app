@@ -1,64 +1,61 @@
+async function sayHi() {
+    return 'Hi!';
+};
+
+sayHi().then((val) => {
+    console.log('Promise fulfilled with: ', val)
+})
+
+async function getRandPokemon() {
+    const rand = Math.floor(Math.random() * 1025 + 1);
+
+    const prom = axios.get(`https://pokeapi.co/api/v2/pokemon/${rand}`);
+
+    const result = await prom;
+
+    console.log(result.data.name);
+};
+
+getRandPokemon();
+
+
+// async function get3Pokemon() {
+//     const rand1 = Math.floor(Math.random() * 1025 + 1);
+    
+//     const prom1 = axios.get(`https://pokeapi.co/api/v2/pokemon/1`);
+    
+//     const results = await prom1;
+
+//     console.log(results.data.name)
+//     // printPokemon(results);
+// };
+
+// function printPokemon(results) {
+//     // for (let pokemon of results) {
+//     //     console.log(pokemon.data.name);
+//     // };
+//     console.log(results.data.name);
+// };
+
+// get3Pokemon();
 /*
 classList
  - Allows you to change an element's class
  - toggle(), add(), remove(), replace(old, new)
  */
 
- const taskList = document.querySelectorAll('#taskList .task');
+//  const taskList = document.querySelectorAll('#taskList .task');
 
- const taskBtns = document.querySelectorAll('ul button');
+//  const taskBtns = document.querySelectorAll('ul button');
  
  
- for (let i = 0; i < taskList.length; i++) {
-     //specifies the button to the left of the current li    
-     taskBtns[i].addEventListener('click', function () { 
-         //toggles the class 'done' when the button to the right of the current li is clicked
-         taskList[i].classList.toggle('done');
-     });
- };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  for (let i = 0; i < taskList.length; i++) {
+//      //specifies the button to the left of the current li    
+//      taskBtns[i].addEventListener('click', function () { 
+//          //toggles the class 'done' when the button to the right of the current li is clicked
+//          taskList[i].classList.toggle('done');
+//      });
+//  };
 
 
 
