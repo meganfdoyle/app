@@ -56,3 +56,14 @@ randomColorBtn.addEventListener('click', function () {
     body.style.backgroundColor = newColor;
     h3.innerText = newColor;
 });
+
+/* calling stopPropagation() on an event will stop it from bubbling up to other elements */
+
+/* event delegation
+    - allows us to refer to elements that might not be on the page yet
+    - create an event listener on a parent/container element
+    - in the callback, accept the event and then refer to the element that was clikcked on with
+       event.target
+    - you can verify the target element's type with nodeName
+      - ex. event.target.NodeName === 'LI'
+*/
