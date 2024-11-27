@@ -47,6 +47,11 @@ const pickColor = function () {
     let r = Math.floor(Math.random() * 255);
     let g = Math.floor(Math.random() * 255);
     let b = Math.floor(Math.random() * 255);
+    if (r + g + b < 290) {
+        h3.style.color = 'white';
+    } else {
+        h3.style.color = 'black';
+    }
     return `rgb(${r}, ${g}, ${b})`;
 }
 
@@ -55,6 +60,7 @@ randomColorBtn.addEventListener('click', function () {
     const newColor = pickColor();
     body.style.backgroundColor = newColor;
     h3.innerText = newColor;
+    console.log(newColor)
 });
 
 /* calling stopPropagation() on an event will stop it from bubbling up to other elements */
