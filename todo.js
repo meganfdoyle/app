@@ -32,6 +32,12 @@ while (input.toLowerCase() !== 'quit' && input.toLowerCase() !== 'q') {
             console.log(`${deleted} was removed`);
         }
     }
+    //remove all todos
+    else if (input.toLowerCase() === 'restart') {
+        for (let i = list.length; i > 0; i--) {
+            list.pop();
+        }
+    } 
     //if the user types anything other than the above actions
     input = prompt('What would you like to do?');
 }
