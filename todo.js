@@ -37,6 +37,7 @@ while (input.toLowerCase() !== 'quit' && input.toLowerCase() !== 'q') {
         for (let i = list.length; i > 0; i--) {
             list.pop();
         }
+        console.log('List cleared')
     } 
     //if the user types anything other than the above actions
     input = prompt('What would you like to do?');
