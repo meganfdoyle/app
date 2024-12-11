@@ -9,7 +9,12 @@ h1:hover {
 }
 
 #galaxy-photo { /* hastag means this is an ID */
-    width: 250px;
+    height: 180px;
+    transition: border-radius 300ms;
+}
+
+#galaxy-photo:hover {
+    border-radius: 50%;
 }
 
 .special { /* dot means this is a class */
